@@ -60,3 +60,22 @@ Eg.
 						                            P5	Anirudh Sahu (RS) (786)	    3219	M	1 2	M	1		
 						                            P6	Tripti Mishra (RS) (200)	3219	T	3 4	M	1	
 ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+Step 3:
+TTSEQ_Generator.py:
+
+This code does the job of taking the Day and Hour (including Common Hour) of a particular section
+and entering 1's in their respective locations on a 6X11 matrix, representing a weeky timetable.
+The locations of 1's represents the timetable slots that would be filled on selection of that particular section.
+
+Eg.
+DAYS:	['T', 'Th', 'S']
+HOURS:	['2']
+TTSEQ:	[[0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ 		[0. 1. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ 		[0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ 		[0. 1. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ 		[0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+ 		[0. 1. 0. 0. 0. 0. 0. 0. 0. 0. 0.]]
+
+----------------------------------------------------------------------------------------------------------------------------------------------------

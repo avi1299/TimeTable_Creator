@@ -16,8 +16,7 @@ import sys
 #						                        2	Manoj Kannan (393), Rajdeep Chowdhury (229)	    5105	T Th S	4				
 
 
-def Name_Attacher(src,dest):
-    df = pd.read_excel(str(src))
+def Name_Attacher(df):
     j=0
     #Checking the rows where the clumn of SEC and ROOM are empty
     for i in range(0,len(df.index)):
@@ -31,15 +30,19 @@ def Name_Attacher(src,dest):
             j = 0
     #Deleting the extra lines
     df = df.dropna(subset=['SEC', 'ROOM'], how='all').reset_index(drop=True)
-    #print(df.to_string())
-    writer = pd.ExcelWriter(str(dest))
-    df.to_excel(writer, 'Sheet1')
-    writer.save()
-    return
+    return df
 
 def main():
     if len(sys.argv)!=3:
         print("This script Requires a Two Arguments: the locations of the Source and Destination Excel Files in that order")
         exit(1)
-    Name_Attacher(str(argv[1],argv[2]))
+    df = pd.read_excel(str(sys.argv[1]))
+    df=Name_Attacher(df)
+    #Writing Changes to file
+    writer = pd.ExcelWriter(str(sys.argv[2]))
+    df.to_excel(writer, 'Sheet1')
+    writer.save()
+    print("Writing changes to :" + str(sys.argv[2]+"\nDone.."))
     return
+
+main()

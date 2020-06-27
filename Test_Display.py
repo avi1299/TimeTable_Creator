@@ -3,21 +3,6 @@ import numpy as np
 import sys
 import curses
 import curses
-
-# def ma(stdscr,crs):
-#     # Clear screen
-#     stdscr.clear()
-#     j=0
-#     # This raises ZeroDivisionError when i == 10.
-#     for i in range(0, 5):
-#         stdscr.addstr(i, (curses.COLS-len(str(crs[j])))//2, str(crs[j])+"\n")  
-#         j+=1        
-#         stdscr.hline('_',10)
-#         stdscr.refresh()
-#         stdscr.getkey()
-
-#     stdscr.refresh()
-#     stdscr.getkey()
     
 def print_subjects(stdscr, index):
     stdscr.clear()

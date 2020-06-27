@@ -79,3 +79,18 @@ TTSEQ:	[[0. 0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
  		[0. 1. 0. 0. 0. 0. 0. 0. 0. 0. 0.]]
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+Step 4:
+LTPC_Adder.py:
+
+This code does the job of creating a new column called 'LTPC' which is a numpy vector of length 4.
+Each element of the vector corresponds to Lecture 'L', Tutorial 'T', Practical 'P', and Common Hour 'C'.
+The numbers in these locatins indicate:
+    1:Single L/T/P/C class
+    2:Multiple classes but in the same time slot
+    3:Multiple classes with different time slots
+In case of 1, there is no choice of professor or timing.
+In case of 2, there is choice of professor only. Timing is fixed. (Most tutorial classes)
+In case of 3, there is choice of both professor and timing. (Lecture classes of large capacity courses)
+
+----------------------------------------------------------------------------------------------------------------------------------------------------

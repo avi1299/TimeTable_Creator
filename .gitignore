@@ -1,6 +1,8 @@
 Timetable/~$Cust_course.xlsx
 Timetable/~$new_mal_4.xlsx
 Timetable/~$new_mal_5.xlsx
-.vscode/settings.json
+Timetable/~$*
+.vscode
 venv
 Py
+__pycache__

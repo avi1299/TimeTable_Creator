@@ -28,7 +28,7 @@ def CourseList_Creator(df,cc_list,writer):
     return df
 
 if __name__ == "__main__":
-    if len(sys.argv)=3:
+    if len(sys.argv)!=3:
         print("This script Requires a Two Arguments: the locations of the Source and Destination Excel Files in that order")
         exit(1)
     #df = pd.read_excel(str(sys.argv[1]))

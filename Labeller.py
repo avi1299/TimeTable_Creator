@@ -27,15 +27,15 @@ def Labeller(df):
     df['SEC']=df['SEC'].astype(str)
     #Adding Section Numbers to the Subjects where there is a single Tutorial or Practical
     for i in range(0, len(df.index)):
-        if df.iloc[i, 2] == "Tutorial" or df.iloc[i, 2] == "Practical":
-            df.iat[i, 6] = "1"
+        if df['COURSE TITLE'].iloc[i] == "Tutorial" or df['COURSE TITLE'].iloc[i] == "Practical":
+            df['SEC'].iat[i] = "1"
 
 
     j = 0
     for i in range(0, len(df.index)):
-        if df.iloc[i, 2] == "Tutorial":
+        if df['COURSE TITLE'].iloc[i] == "Tutorial":
             while True:
-                df.iat[i+j, 6] = 'T'+str(df.iloc[i+j, 6])
+                df['SEC'].iat[i+j] = 'T'+(df['SEC'].iloc[i+j])
                 j += 1
                 if i+j==len(df.index):
                     j=0
@@ -45,9 +45,9 @@ def Labeller(df):
                     j=0
                     break
                 
-        elif df.iloc[i, 2] == "Practical":
+        elif df['COURSE TITLE'].iloc[i] == "Practical":
             while True:
-                df.iat[i+j, 6] = 'P'+str(df.iloc[i+j, 6])
+                df['SEC'].iat[i+j] = 'P'+(df['SEC'].iloc[i+j])
                 j += 1
                 if i+j==len(df.index):
                     j=0
@@ -57,9 +57,9 @@ def Labeller(df):
                     j=0
                     break
                 
-        elif pd.notnull(df['L'].iloc[i]) and df.iloc[i, 3] != 0:
+        elif pd.notnull(df['L'].iloc[i]) and df['L'].iloc[i] != 0:
             while True:
-                df.iat[i+j, 6] = 'L'+str(df.iloc[i+j, 6])
+                df['SEC'].iat[i+j] = 'L'+(df['SEC'].iloc[i+j])
                 j += 1
                 if i+j==len(df.index):
                     j=0
@@ -69,9 +69,9 @@ def Labeller(df):
                     j=0
                     break
                 
-        elif pd.notnull(df['L'].iloc[i]) and df.iloc[i, 4] != 0 and df.iloc[i, 3] == 0:
+        elif pd.notnull(df['L'].iloc[i]) and df['P'].iloc[i] != 0 and df['L'].iloc[i] == 0:
             while True:
-                df.iat[i + j, 6] = 'P' + str(df.iloc[i + j, 6])
+                df['SEC'].iat[i + j] = 'P' + (df['SEC'].iloc[i + j])
                 j += 1
                 if i+j==len(df.index):
                     j=0
@@ -81,9 +81,9 @@ def Labeller(df):
                     j=0
                     break
 
-        elif pd.notnull(df['L'].iloc[i]) and df.iloc[i, 4] == 0 and df.iloc[i, 3] == 0 and pd.isnull(df['ROOM'].iloc[i]):
+        elif pd.notnull(df['L'].iloc[i]) and df['P'].iloc[i] == 0 and df['L'].iloc[i] == 0 and pd.isnull(df['ROOM'].iloc[i]):
             while True:
-                df.iat[i + j, 6] = 'PR0'
+                df['SEC'].iat[i + j] = 'PR0'
                 j += 1
                 if i+j==len(df.index):
                     j=0
@@ -93,9 +93,9 @@ def Labeller(df):
                     j=0
                     break
                 
-        elif pd.notnull(df['L'].iloc[i]) and df.iloc[i, 4] == 0 and df.iloc[i, 3] == 0 and pd.notnull(df['ROOM'].iloc[i]):
+        elif pd.notnull(df['L'].iloc[i]) and df['P'].iloc[i] == 0 and df['L'].iloc[i] == 0 and pd.notnull(df['ROOM'].iloc[i]):
             while True:
-                df.iat[i + j, 6] = 'L' + str(df.iloc[i + j, 6])
+                df['SEC'].iat[i + j] = 'L' + (df['SEC'].iloc[i + j])
                 j += 1
                 if i+j==len(df.index):
                     j=0
@@ -104,21 +104,26 @@ def Labeller(df):
                     i = i+j-1
                     j=0
                     break
+
+    for i in range(0, len(df.index)):
+        if ".0" in df['SEC'].iloc[i]:
+            df['SEC'].iat[i]=df['SEC'].iloc[i].partition(".")[0]
     return df
 
-def main():
+if __name__ == "__main__":
     if len(sys.argv)!=3:
         print("This script Requires a Two Arguments: the locations of the Source and Destination Excel Files in that order")
         exit(1)
     df = pd.read_excel(str(sys.argv[1]))
+    #df = pd.read_excel("./Timetable/new_mal_1.xlsx")
     #The new table has an extra column with the row numbers.  This was created while writing the dataframe into the Excel file.
     #We are removing it for furter processing. Remove the line below if you dont have such a column.
     df=df.drop(df.columns[0], axis=1)
     df=Labeller(df)
     #Writing the changes    
     writer = pd.ExcelWriter(str(sys.argv[2]))
+    #writer = pd.ExcelWriter("./Timetable/new_mal_2.xlsx")
     df.to_excel(writer, 'Sheet1')
     writer.save()
     print("Writing changes to :" + str(sys.argv[2]+"\nDone.."))
-    
-main()
+

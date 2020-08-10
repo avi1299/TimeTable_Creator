@@ -26,8 +26,9 @@ def CourseList_Creator(df,cc_list,writer):
     writer.close()
     
     return df
-def main():
-    if len(sys.argv)==3:
+
+if __name__ == "__main__":
+    if len(sys.argv)=3:
         print("This script Requires a Two Arguments: the locations of the Source and Destination Excel Files in that order")
         exit(1)
     #df = pd.read_excel(str(sys.argv[1]))
@@ -45,4 +46,3 @@ def main():
     #writer = pd.ExcelWriter(str(sys.argv[2]))
    # print("Writing changes to :" + str(sys.argv[2]+"\nDone.."))
               
-main()

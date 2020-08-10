@@ -32,17 +32,16 @@ def Name_Attacher(df):
     df = df.dropna(subset=['SEC', 'ROOM'], how='all').reset_index(drop=True)
     return df
 
-def main():
+if __name__ == "__main__":
     if len(sys.argv)!=3:
         print("This script Requires a Two Arguments: the locations of the Source and Destination Excel Files in that order")
         exit(1)
     df = pd.read_excel(str(sys.argv[1]))
+    #df = pd.read_excel("./Timetable/new_mal.xlsx")
     df=Name_Attacher(df)
     #Writing Changes to file
     writer = pd.ExcelWriter(str(sys.argv[2]))
+    #writer = pd.ExcelWriter("./Timetable/new_mal_1.xlsx")
     df.to_excel(writer, 'Sheet1')
     writer.save()
     print("Writing changes to :" + str(sys.argv[2]+"\nDone.."))
-    return
-
-main()

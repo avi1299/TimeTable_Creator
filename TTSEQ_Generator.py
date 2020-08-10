@@ -54,14 +54,14 @@ if __name__ == "__main__":
     if len(sys.argv)!=3:
         print("This script Requires a Two Arguments: the locations of the Source and Destination Excel Files in that order")
         exit(1)
-    df = pd.read_excel(str(sys.argv[1]))
+    df = pd.read_excel(str(sys.argv[1]))   
     #df = pd.read_excel("./Timetable/new_mal_2.xlsx")
     #The new table has an extra column with the row numbers.  This was created while writing the dataframe into the Excel file.
     #We are removing it for furter processing. Remove the line below if you dont have such a column.
     df=df.drop(df.columns[0], axis=1)
     df=TTSEQ_Generator(df)
     #Writing the changes    
-    writer = pd.ExcelWriter(str(sys.argv[2]))
+    writer = pd.ExcelWriter(str(sys.argv[2])) # pylint: disable=abstract-class-instantiated
     #writer = pd.ExcelWriter("./Timetable/new_mal_3.xlsx")
     df.to_excel(writer, 'Sheet1')
     writer.save()

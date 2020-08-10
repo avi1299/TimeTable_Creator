@@ -121,7 +121,7 @@ if __name__ == "__main__":
     df=df.drop(df.columns[0], axis=1)
     df=Labeller(df)
     #Writing the changes    
-    writer = pd.ExcelWriter(str(sys.argv[2]))
+    writer = pd.ExcelWriter(str(sys.argv[2])) # pylint: disable=abstract-class-instantiated
     #writer = pd.ExcelWriter("./Timetable/new_mal_2.xlsx")
     df.to_excel(writer, 'Sheet1')
     writer.save()

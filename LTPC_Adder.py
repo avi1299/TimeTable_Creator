@@ -107,9 +107,9 @@ if __name__ == "__main__":
     df=df.drop(df.columns[0], axis=1)
     df=LTPC_Adder(df)
     #Writing the changes   
-    writer = pd.ExcelWriter(str(sys.argv[2]))
+    writer = pd.ExcelWriter(str(sys.argv[2])) # pylint: disable=abstract-class-instantiated
     #writer = pd.ExcelWriter("./Timetable/new_mal_4.xlsx")
     df.to_excel(writer, 'Sheet1')
     writer.save()
-    print("Writing changes to :" + str(sys.argv[2]+"\nDone.."))
+    print("Writing changes to :" + str(sys.argv[2]+"\nDone..")) 
   

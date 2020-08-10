@@ -40,7 +40,7 @@ if __name__ == "__main__":
     #df = pd.read_excel("./Timetable/new_mal.xlsx")
     df=Name_Attacher(df)
     #Writing Changes to file
-    writer = pd.ExcelWriter(str(sys.argv[2]))
+    writer = pd.ExcelWriter(str(sys.argv[2])) # pylint: disable=abstract-class-instantiated
     #writer = pd.ExcelWriter("./Timetable/new_mal_1.xlsx")
     df.to_excel(writer, 'Sheet1')
     writer.save()

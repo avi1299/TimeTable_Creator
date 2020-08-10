@@ -21,7 +21,7 @@ if __name__ =="__main__":
     print("Writing changes to Pickle file.\nDone..")
 
     #Writing Changes to Excel file
-    writer = pd.ExcelWriter("./Timetable/View.xlsx")
+    writer = pd.ExcelWriter("./Timetable/View.xlsx") # pylint: disable=abstract-class-instantiated
     df.to_excel(writer, 'Sheet1')
     writer.save()
     

@@ -7,7 +7,7 @@ import curses
 def print_table(ttseq):
     tt_win.clear()
     tt_win.box(curses.ACS_VLINE,curses.ACS_HLINE)
-    h,w=tt_win.getmaxyx()
+    #h,w=tt_win.getmaxyx()
     tt_win.addstr(1,6,"|  8AM-9AM   |  9AM-10AM  | 10AM-11AM  | 11AM-12PM  | 12PM-1PM   |  1PM-2PM   |  2PM-3PM   |  3PM-4PM   |  4PM-5PM   |  5PM-6PM   |  6PM-7PM   |")
     tt_win.addstr(2,2,"____|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|")
     tt_win.addstr(3,2,"MON |")
@@ -17,7 +17,7 @@ def print_table(ttseq):
     tt_win.addstr(7,2,"FRI |")
     tt_win.addstr(8,2,"SAT |")
     tt_win.addstr(9,2,"____|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|____________|")
-    m,n=ttseq.shape
+    #m,n=ttseq.shape
     for idx,val in np.ndenumerate(ttseq):
         i,j=idx
         y=int(i)+3
@@ -37,7 +37,7 @@ def print_classes(sub_code):
 def print_subjects(index):
     sub_win.clear()
     sub_win.box(curses.ACS_VLINE,curses.ACS_HLINE)
-    h,w=sub_win.getmaxyx()
+    _,w=sub_win.getmaxyx()
     sub_win.addstr(1, w//2-len("SUBJECTS")//2, "SUBJECTS")
     for idx, row in enumerate(crs):
         x = 1
